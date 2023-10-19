@@ -1,14 +1,17 @@
-import Profile from './components/profile'
+import { people } from './constants/people'
+import { getImageUrl } from './utils/getImageUrl'
 
-function App() {
-  return (
-    <>
-      <h1>Amazing scientists</h1>
-      <Profile />
-      <Profile />
-      <Profile />
-    </>
-  )
+export default function List() {
+  const listItems = people.map((person) => (
+    <li key={person.id}>
+      <img src={getImageUrl(person)} alt={person.name} />
+
+      <p>
+        <b>{person.name}</b>
+        {' ' + person.profession + ' '}
+        known for {person.accomplishment}
+      </p>
+    </li>
+  ))
+  return <ul>{listItems}</ul>
 }
-
-export default App
