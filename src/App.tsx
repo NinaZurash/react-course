@@ -13,6 +13,7 @@ export default function Gallery() {
     setShowMore(!showMore)
   }
 
+  console.log('srg')
   let sculpture = sculptureList[index]
   return (
     <>
