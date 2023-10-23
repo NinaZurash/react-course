@@ -73,6 +73,7 @@ export default function Form() {
         (located in {person.artwork.city})
       </p>
       <img src={person.artwork.image} alt={person.artwork.title} />
+
     </>
   )
 }
