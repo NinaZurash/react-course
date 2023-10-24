@@ -1,53 +1,31 @@
-import { useState } from 'react'
-import AddTask from './AddTask.js'
-import TaskList from './TaskList.js'
+import { messengerReducer, initialState } from './utils/messengerReducer.tsx'
+import Chat, { ContactType } from './components/chat.tsx'
+import ContactList from './components/contactList.tsx'
+import { useReducer } from './utils/myReact.tsx'
 
-export default function TaskApp() {
-  const [tasks, setTasks] = useState(initialTasks)
-
-  function handleAddTask(text) {
-    setTasks([
-      ...tasks,
-      {
-        id: nextId++,
-        text: text,
-        done: false,
-      },
-    ])
-  }
-
-  function handleChangeTask(task) {
-    setTasks(
-      tasks.map((t) => {
-        if (t.id === task.id) {
-          return task
-        } else {
-          return t
-        }
-      }),
-    )
-  }
-
-  function handleDeleteTask(taskId) {
-    setTasks(tasks.filter((t) => t.id !== taskId))
-  }
-
+export default function Messenger() {
+  const [state, dispatch] = useReducer(messengerReducer, initialState)
+  const message = state.messages[state.selectedId]
+  const contact = contacts.find((c) => c.id === state.selectedId) || contacts[0]
   return (
-    <>
-      <h1>Prague itinerary</h1>
-      <AddTask onAddTask={handleAddTask} />
-      <TaskList
-        tasks={tasks}
-        onChangeTask={handleChangeTask}
-        onDeleteTask={handleDeleteTask}
+    <div>
+      <ContactList
+        contacts={contacts}
+        selectedId={state.selectedId}
+        dispatch={dispatch}
       />
-    </>
+      <Chat
+        key={contact.id}
+        message={message}
+        contact={contact}
+        dispatch={dispatch}
+      />
+    </div>
   )
 }
 
-let nextId = 3
-const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false },
+const contacts: ContactType[] = [
+  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+  { id: 1, name: 'Alice', email: 'alice@mail.com' },
+  { id: 2, name: 'Bob', email: 'bob@mail.com' },
 ]
