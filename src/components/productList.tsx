@@ -1,11 +1,11 @@
 import { productsList } from '../constants/productsList'
-import { useCartDispatch } from '../context/CartProvider'
+import { ActionTypes, useCartDispatch } from '../context/CartProvider'
 
 export default function ProductList() {
   const dispatch = useCartDispatch()
   function handleAddToCart(id: number) {
     dispatch({
-      type: 'add-product',
+      type: ActionTypes.addProduct,
       productId: id,
     })
   }
