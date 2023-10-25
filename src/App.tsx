@@ -5,6 +5,7 @@ import { useReducer } from './utils/myReact.tsx'
 
 export default function Messenger() {
   const [state, dispatch] = useReducer(messengerReducer, initialState)
+  // @ts-ignore
   const message = state.messages[state.selectedId]
   const contact = contacts.find((c) => c.id === state.selectedId) || contacts[0]
   return (
