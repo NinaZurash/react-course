@@ -1,32 +1,16 @@
-import { messengerReducer, initialState } from './utils/messengerReducer.tsx'
-import Chat, { ContactType } from './components/chat.tsx'
-import ContactList from './components/contactList.tsx'
-import { useReducer } from './utils/myReact.tsx'
+import Cart from './components/cart'
+import ProductList from './components/productList'
 
-export default function Messenger() {
-  const [state, dispatch] = useReducer(messengerReducer, initialState)
-  // @ts-ignore
-  const message = state.messages[state.selectedId]
-  const contact = contacts.find((c) => c.id === state.selectedId) || contacts[0]
+export default function App() {
   return (
-    <div>
-      <ContactList
-        contacts={contacts}
-        selectedId={state.selectedId}
-        dispatch={dispatch}
-      />
-      <Chat
-        key={contact.id}
-        message={message}
-        contact={contact}
-        dispatch={dispatch}
-      />
+    <div className="container ml-8 mt-5 flex w-full">
+      <div className="w-5/6">
+        <h1 className="text-2xl font-semibold mb-4">Product Listing</h1>
+        <ProductList />
+      </div>
+      <div className="border-teal-700 rounded border ml-20 pl-4 pt-3 w-1/3 text-2xl">
+        <Cart />
+      </div>
     </div>
   )
 }
-
-const contacts: ContactType[] = [
-  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
-  { id: 1, name: 'Alice', email: 'alice@mail.com' },
-  { id: 2, name: 'Bob', email: 'bob@mail.com' },
-]
