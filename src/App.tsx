@@ -1,35 +1,16 @@
-import { useState } from 'react'
-import { sculptureList } from './constants/data'
+import Cart from './components/cart'
+import ProductList from './components/productList'
 
-export default function Gallery() {
-  const [index, setIndex] = useState(0)
-  const [showMore, setShowMore] = useState(false)
-
-  function handleNextClick() {
-    setIndex(index + 1)
-  }
-
-  function handleMoreClick() {
-    setShowMore(!showMore)
-  }
-
-  console.log('srg')
-  let sculpture = sculptureList[index]
+export default function App() {
   return (
-    <>
-      <button onClick={handleNextClick}>Next</button>
-      <h2>
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
-      </h3>
-      <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
-      </button>
-      {showMore && <p>{sculpture.description}</p>}
-      <img src={sculpture.url} alt={sculpture.alt} />
-    </>
+    <div className="container ml-8 mt-5 flex w-full">
+      <div className="w-5/6">
+        <h1 className="text-2xl font-semibold mb-4">Product Listing</h1>
+        <ProductList />
+      </div>
+      <div className="border-teal-700 rounded border ml-20 pl-4 pt-3 w-1/3 text-2xl">
+        <Cart />
+      </div>
+    </div>
   )
 }
