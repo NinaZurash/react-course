@@ -2,6 +2,7 @@ import Cart from './components/cart'
 import ProductList from './components/productList'
 
 export default function App() {
+  console.log('skdjn')
   return (
     <div className="container ml-8 mt-5 flex w-full">
       <div className="w-5/6">
