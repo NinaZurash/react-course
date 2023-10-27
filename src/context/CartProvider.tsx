@@ -22,8 +22,6 @@ export default function CartProvider({
   children: React.ReactNode
 }) {
   const [cart, dispatch] = useReducer(cartReducer, initialCart)
-  console.log('ksjghb')
-
   return (
     <CartContext.Provider value={cart}>
       <CartDispatchContext.Provider value={dispatch}>
